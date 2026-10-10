@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="خطة علاجية وإثرائية في الفيزياء باستخدام محاكاة CK-12 — إعداد أ. أريج الجبرتي">
+<meta name="description" content="المحاكاة في الفيزياء باستخدام CK-12 — إعداد أ. أريج الجبرتي">
 <meta name="author" content="أ. أريج الجبرتي">
 <style>body{margin:0}</style>
 <title>حقيبة محاكاة الفيزياء</title>
@@ -38,7 +38,7 @@ svg.i{fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke
 header.cover{background:linear-gradient(115deg,var(--cover-a) 0%,var(--cover-b) 55%,var(--cover-c) 100%);color:var(--on-dark);padding-block:44px 40px;overflow:hidden}
 .cover .wrap{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:28px;align-items:center}
 .tag{display:inline-flex;align-items:center;gap:8px;font-size:.85rem;font-weight:500;background:rgba(255,255,255,.14);padding:4px 12px;border-radius:999px}
-h1{font-weight:700;font-size:clamp(1.9rem,5vw,2.7rem);line-height:1.35;margin:.7rem 0 .5rem;text-wrap:balance}
+h1{font-weight:700;font-size:clamp(1.9rem,5vw,2.7rem);line-height:1.35;margin:0 0 .5rem;text-wrap:balance}
 .cover p{margin:0;max-width:52ch;opacity:.9}
 .orbit{position:relative;width:220px;height:220px;flex:none}
 .orbit::before{content:"";position:absolute;inset:22px;border:1.5px dashed rgba(255,255,255,.35);border-radius:50%}
@@ -124,7 +124,6 @@ footer p{margin:0;color:var(--muted);font-size:.85rem}
 <header class="cover">
   <div class="wrap">
     <div>
-      <span class="tag"><svg class="i" width="16" height="16" viewBox="0 0 28 28" data-icon="flask"></svg>خطة علاجية وإثرائية · فيزياء</span>
       <h1>المحاكاة في الفيزياء باستخدام CK-12</h1>
       <p>تعلّم الكهرباء والمغناطيسية والفيزياء النووية بالتجربة: لكل درس محاكاة تفاعلية مجانية تجرّب فيها بنفسك، وفيديو قصير يشرح طريقة استخدامها.</p>
     </div>
@@ -165,8 +164,7 @@ footer p{margin:0;color:var(--muted);font-size:.85rem}
     <div class="ch-head">
       <div class="ch-badge" style="background:linear-gradient(135deg,#0DCFDA,#208CAA)"><svg class="i" width="28" height="28" viewBox="0 0 28 28" data-icon="map"></svg></div>
       <div>
-        <div class="ch-num">إثراء</div>
-        <h2>خرائط المفاهيم والربط مع التخصصات الأخرى</h2>
+                <h2>خرائط المفاهيم والربط مع التخصصات الأخرى</h2>
       </div>
     </div>
     <div class="maps">
@@ -250,7 +248,7 @@ const shade=h=>{const n=parseInt(h.slice(1),16),f=v=>Math.max(0,Math.round(v*.72
 let total=0, html='', nav='';
 DATA.forEach((c,ci)=>{
   nav+=`<a href="#${c.id}"><i style="background:${c.c}"></i>${esc(c.ar)}</a>`;
-  html+=`<section class="ch" id="${c.id}" style="--c:${c.c}"><div class="ch-head"><div class="ch-badge" style="background:linear-gradient(135deg,${c.c},${shade(c.c)})">${ic(c.icon,28)}</div><div><div class="ch-num">الفصل ${ci+1}</div><h2>${esc(c.ar)}</h2><span class="en">${esc(c.en)}</span></div></div><div class="lessons">`;
+  html+=`<section class="ch" id="${c.id}" style="--c:${c.c}"><div class="ch-head"><div class="ch-badge" style="background:linear-gradient(135deg,${c.c},${shade(c.c)})">${ic(c.icon,28)}</div><div><h2>${esc(c.ar)}</h2><span class="en">${esc(c.en)}</span></div></div><div class="lessons">`;
   c.lessons.forEach((l,li)=>{
     const k=c.id+'-'+li; total++;
     html+=`<div class="lesson${done[k]?' done':''}" data-k="${k}">
