@@ -9,99 +9,110 @@
 <title>حقيبة محاكاة الفيزياء</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap">
 <style>
-/* Layout: a lab notebook — narrow reading column, chapters as numbered sections, each lesson a row with two actions (simulate / watch). */
-/* Layout: a gradient identity band (blue to green), then chapters as numbered sections, each lesson a row with two actions (simulate / watch). */
+/* Layout: MoE presentation identity — light grey ground, dark teal-to-indigo cover band, grey title tabs with a teal underline, round gradient icon badges. */
 :root{
-  --bg:#F2F7F8; --surface:#FFFFFF; --ink:#17445B; --muted:#5B7480; --line:#D3E3E6;
-  --blue:#2982AF; --green:#3CA77A; --copper:#3CA77A; --copper-soft:#E3F3EC; --teal:#157885; --teal-soft:#DDEFF1;
-  --band-a:#2982AF; --band-b:#3CA77A; --on-band:#FFFFFF;
-  --display:"Tajawal",Tahoma,"Segoe UI",sans-serif;
-  --body:"Tajawal",Tahoma,"Segoe UI",sans-serif;
-  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  --bg:#F2F2F2; --surface:#FFFFFF; --tab:#E6E6E6; --ink:#003944; --muted:#5E6E75; --line:#DADADA;
+  --indigo:#382972; --purple:#7030A0; --teal:#208CAA; --sky:#2BADDF; --lav:#757BBB;
+  --cover-a:#003944; --cover-b:#1673A4; --cover-c:#382972; --on-dark:#FFFFFF;
+  --font:"IBM Plex Sans Arabic","Helvetica Neue",Tahoma,"Segoe UI",sans-serif;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --bg:#0D1E26; --surface:#132B36; --ink:#E4F0F2; --muted:#9DB6BE; --line:#22414D;
-  --copper:#5CC596; --copper-soft:#173A2E; --teal:#4FB3C0; --teal-soft:#133841;
-  --band-a:#1D5F82; --band-b:#277A5A; --on-band:#FFFFFF; color-scheme:dark}}
+  --bg:#0C1B22; --surface:#132A33; --tab:#1B3742; --ink:#E6EEF1; --muted:#9FB2B9; --line:#24414C;
+  --indigo:#B4A6F2; --purple:#C08BE6; --teal:#45B8D6; --sky:#5CC6EC; --lav:#A4A9E6;
+  --cover-a:#002A33; --cover-b:#11587E; --cover-c:#2C205A; --on-dark:#FFFFFF; color-scheme:dark}}
 :root[data-theme="dark"]{
-  --bg:#0D1E26; --surface:#132B36; --ink:#E4F0F2; --muted:#9DB6BE; --line:#22414D;
-  --copper:#5CC596; --copper-soft:#173A2E; --teal:#4FB3C0; --teal-soft:#133841;
-  --band-a:#1D5F82; --band-b:#277A5A; --on-band:#FFFFFF; color-scheme:dark}
+  --bg:#0C1B22; --surface:#132A33; --tab:#1B3742; --ink:#E6EEF1; --muted:#9FB2B9; --line:#24414C;
+  --indigo:#B4A6F2; --purple:#C08BE6; --teal:#45B8D6; --sky:#5CC6EC; --lav:#A4A9E6;
+  --cover-a:#002A33; --cover-b:#11587E; --cover-c:#2C205A; --on-dark:#FFFFFF; color-scheme:dark}
 
 *{box-sizing:border-box}
-body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.8;direction:rtl}
-.wrap{max-width:860px;margin:0 auto;padding-inline:16px}
+body{background:var(--bg);color:var(--ink);font-family:var(--font);font-size:17px;line-height:1.8;direction:rtl}
+.wrap{max-width:900px;margin:0 auto;padding-inline:16px}
 a{color:inherit}
-:focus-visible{outline:2px solid var(--copper);outline-offset:3px;border-radius:6px}
+:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:6px}
+svg.i{fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
 
-/* hero */
-header.hero{padding-block:44px 30px;background:linear-gradient(90deg,var(--band-a),var(--band-b));color:var(--on-band);margin-bottom:28px}
-header.hero .lead{color:var(--on-band);opacity:.92}
-header.hero .eyebrow{color:var(--on-band);opacity:.85}
-header.hero h1 span{color:var(--on-band);opacity:.8}
-.eyebrow{font-size:.8rem;letter-spacing:.04em;color:var(--teal);font-weight:500}
-h1{font-family:var(--display);font-weight:800;font-size:clamp(1.9rem,5vw,2.8rem);line-height:1.35;margin:.4rem 0 .6rem;text-wrap:balance}
-h1 span{color:var(--copper)}
-.lead{color:var(--muted);max-width:60ch;margin:0}
-.circuit{display:block;width:100%;height:40px;margin-top:22px;color:rgba(255,255,255,.45)}
+/* cover */
+header.cover{background:linear-gradient(115deg,var(--cover-a) 0%,var(--cover-b) 55%,var(--cover-c) 100%);color:var(--on-dark);padding-block:44px 40px;overflow:hidden}
+.cover .wrap{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:28px;align-items:center}
+.tag{display:inline-flex;align-items:center;gap:8px;font-size:.85rem;font-weight:500;background:rgba(255,255,255,.14);padding:4px 12px;border-radius:999px}
+h1{font-weight:700;font-size:clamp(1.9rem,5vw,2.7rem);line-height:1.35;margin:.7rem 0 .5rem;text-wrap:balance}
+.cover p{margin:0;max-width:52ch;opacity:.9}
+.orbit{position:relative;width:220px;height:220px;flex:none}
+.orbit::before{content:"";position:absolute;inset:22px;border:1.5px dashed rgba(255,255,255,.35);border-radius:50%}
+.orbit .core{position:absolute;inset:70px;border-radius:50%;background:rgba(255,255,255,.95);color:#382972;display:grid;place-items:center;box-shadow:0 8px 24px rgba(0,0,0,.25)}
+.orbit .sat{position:absolute;width:52px;height:52px;border-radius:50%;display:grid;place-items:center;color:#fff;border:2px solid rgba(255,255,255,.7)}
+.sat.s1{top:0;left:84px;background:#208CAA}
+.sat.s2{top:84px;right:0;background:#7358A5}
+.sat.s3{bottom:0;left:84px;background:#2BADDF}
+.sat.s4{top:84px;left:0;background:#7030A0}
 
-/* how-to */
-.how{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-block:8px 28px;padding:0;list-style:none;counter-reset:s}
-.how li{counter-increment:s;display:flex;gap:10px;align-items:flex-start;font-size:.92rem;color:var(--muted)}
-.how li::before{content:counter(s);font-family:var(--mono);font-size:.8rem;flex:none;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;border:1.5px solid var(--copper);color:var(--copper)}
-.how b{color:var(--ink);font-weight:500;display:block}
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:36px 0 0;padding:0;list-style:none}
+.steps li{background:var(--surface);border-radius:14px;padding:18px;display:grid;gap:6px;justify-items:start}
+.badge{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;color:#fff;flex:none}
+.steps .n{font-size:.78rem;color:var(--muted)}
+.steps b{font-weight:600;color:var(--indigo)}
+.steps span.d{font-size:.9rem;color:var(--muted);line-height:1.6}
 
-.intro{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px 20px}
-.intro h2{margin:0;font-size:1.05rem;font-weight:600}
+.intro{display:flex;flex-wrap:wrap;align-items:center;gap:16px;background:var(--surface);border-radius:14px;padding:18px 20px;margin-top:14px}
+.intro .txt{flex:1;min-width:0}
+.intro h2{margin:0;font-size:1.05rem;color:var(--indigo)}
 .intro p{margin:0;color:var(--muted);font-size:.9rem}
 
 /* nav */
-nav.chapters{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line);margin-top:32px}
+nav.chapters{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line);margin-top:36px}
 nav.chapters .wrap{display:flex;gap:6px;overflow-x:auto;padding-block:10px;scrollbar-width:none}
-nav.chapters a{flex:none;text-decoration:none;font-size:.85rem;padding:5px 12px;border-radius:999px;border:1px solid var(--line);color:var(--muted);background:var(--surface)}
-nav.chapters a:hover{color:var(--ink);border-color:var(--copper)}
-.progress{font-family:var(--mono);font-size:.8rem;color:var(--muted);margin-inline-start:auto;flex:none;align-self:center;padding-inline-start:8px}
+nav.chapters a{flex:none;display:inline-flex;align-items:center;gap:6px;text-decoration:none;font-size:.85rem;padding:5px 12px 5px 14px;border-radius:999px;background:var(--surface);color:var(--ink);border:1px solid var(--line)}
+nav.chapters a i{width:8px;height:8px;border-radius:50%;flex:none}
+nav.chapters a:hover{border-color:var(--teal)}
+.progress{font-size:.82rem;color:var(--muted);margin-inline-start:auto;flex:none;align-self:center;padding-inline-start:8px;font-variant-numeric:tabular-nums}
 
 /* chapters */
-section.ch{padding-block:34px 6px;scroll-margin-top:60px}
-.ch-head{display:flex;align-items:center;gap:14px;margin-bottom:14px}
-.ch-icon{flex:none;width:52px;height:52px;border-radius:12px;background:var(--copper-soft);color:var(--copper);display:grid;place-items:center}
-.ch-num{font-family:var(--mono);font-size:.75rem;color:var(--muted)}
-.ch-head h2{font-family:var(--display);font-weight:700;font-size:1.45rem;margin:0;line-height:1.3}
-.en{font-family:var(--mono);font-size:.78rem;color:var(--muted);direction:ltr;unicode-bidi:isolate;text-align:right}
+section.ch{padding-block:36px 4px;scroll-margin-top:62px}
+.ch-head{display:flex;align-items:center;gap:14px;margin-bottom:16px}
+.ch-badge{width:60px;height:60px;border-radius:50%;display:grid;place-items:center;color:#fff;flex:none;box-shadow:0 0 0 5px var(--surface)}
+.ch-num{font-size:.8rem;font-weight:600;color:var(--teal)}
+.ch-head h2{font-weight:700;font-size:1.45rem;margin:0;line-height:1.3;color:var(--indigo)}
+.en{font-size:.8rem;color:var(--muted);direction:ltr;unicode-bidi:isolate;text-align:right}
 
 .lessons{display:grid;gap:10px}
-.lesson{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:14px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
-.lesson.done{border-color:var(--teal)}
-.lesson h3{margin:0;font-size:1.05rem;font-weight:700;line-height:1.5}
+.lesson{display:grid;grid-template-columns:auto auto minmax(0,1fr) auto;gap:14px;align-items:center;background:var(--surface);border-radius:12px;padding:14px 16px;border-inline-start:4px solid var(--c)}
+.lesson.done{background:color-mix(in srgb,var(--surface) 88%,var(--c))}
+.l-ico{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;color:var(--c);background:color-mix(in srgb,var(--c) 13%,transparent)}
+.lesson h3{margin:0;font-size:1.05rem;font-weight:600;line-height:1.5}
 .lesson .en{display:block}
 .check{width:22px;height:22px;accent-color:var(--teal);cursor:pointer;margin:0}
 .actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
-.btn{display:inline-flex;align-items:center;gap:7px;text-decoration:none;font-size:.92rem;font-weight:700;padding:8px 14px;border-radius:10px;border:1.5px solid transparent;white-space:nowrap;transition:transform .15s}
-.btn:hover{transform:translateY(-1px)}
-.btn.sim{background:var(--teal);color:var(--surface)}
-.btn.vid{border-color:var(--copper);color:var(--copper);background:transparent}
-.intro .btn.vid{background:var(--copper);color:var(--surface)}
-.btn svg{flex:none}
-.note{font-size:.8rem;color:var(--muted);margin-top:4px}
+.btn{display:inline-flex;align-items:center;gap:7px;text-decoration:none;font-size:.9rem;font-weight:600;padding:8px 14px;border-radius:999px;border:1.5px solid transparent;white-space:nowrap;transition:transform .15s,box-shadow .15s}
+.btn:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(0,57,68,.15)}
+.btn.sim{background:var(--teal);color:#fff}
+.btn.vid{border-color:var(--indigo);color:var(--indigo);background:transparent}
+.btn.solid-indigo{background:var(--indigo);color:var(--surface);border-color:var(--indigo)}
 
 /* concept maps */
 .maps{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-.map{background:var(--teal-soft);border-radius:12px;padding:16px 18px;display:grid;gap:8px}
-.map h3{margin:0;font-size:1rem;font-weight:600}
-.map p{margin:0;font-size:.88rem;color:var(--muted)}
+.map{background:var(--surface);border-radius:14px;padding:18px;display:grid;gap:10px;justify-items:start}
+.map h3{margin:0;font-size:1.05rem;font-weight:600;color:var(--indigo)}
+.map p{margin:0;font-size:.9rem;color:var(--muted)}
 .term{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-.term code{font-family:var(--mono);direction:ltr;background:var(--surface);border:1px solid var(--line);padding:3px 10px;border-radius:6px;font-size:.88rem;user-select:all}
-.copy{font:inherit;font-size:.8rem;border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:3px 10px;border-radius:6px;cursor:pointer}
+.term code{font-family:ui-monospace,Menlo,monospace;direction:ltr;background:var(--bg);border:1px solid var(--line);padding:3px 10px;border-radius:6px;font-size:.9rem;user-select:all}
+.copy{font:inherit;font-size:.8rem;border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:3px 12px;border-radius:999px;cursor:pointer;display:inline-flex;align-items:center;gap:5px}
 
-footer{margin-top:48px;border-top:1px solid var(--line);padding-block:24px 40px;color:var(--muted);font-size:.85rem}
-footer strong{color:var(--ink);font-weight:600}
+footer{margin-top:52px;background:var(--surface);padding-block:22px;border-top:3px solid var(--teal)}
+footer .wrap{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px;justify-content:space-between}
+footer strong{color:var(--indigo);font-weight:700}
+footer p{margin:0;color:var(--muted);font-size:.85rem}
 
-@media (max-width:640px){
-  .how{grid-template-columns:1fr}
-  .lesson{grid-template-columns:auto minmax(0,1fr)}
+@media (max-width:680px){
+  .cover .wrap{grid-template-columns:1fr}
+  .orbit{display:none}
+  .steps{grid-template-columns:1fr}
+  .steps li{grid-template-columns:auto minmax(0,1fr);column-gap:14px;align-items:center}
+  .steps li .badge{grid-row:span 3}
+  .lesson{grid-template-columns:auto auto minmax(0,1fr)}
   .actions{grid-column:1 / -1;justify-content:stretch}
   .actions .btn{flex:1;justify-content:center}
   .maps{grid-template-columns:1fr}
@@ -110,33 +121,36 @@ footer strong{color:var(--ink);font-weight:600}
 </style>
 </head><body>
 
-<header class="hero">
+<header class="cover">
   <div class="wrap">
-    <div class="eyebrow">خطة علاجية وإثرائية · فيزياء</div>
-    <h1>المحاكاة في الفيزياء <span>باستخدام CK-12</span></h1>
-    <p class="lead">تعلّم الكهرباء والمغناطيسية والفيزياء النووية بالتجربة: لكل درس محاكاة تفاعلية مجانية تجرّب فيها بنفسك، وفيديو قصير يشرح طريقة استخدامها.</p>
-    <svg class="circuit" viewBox="0 0 800 46" preserveAspectRatio="none" aria-hidden="true">
-      <path d="M0 23H300M330 23H470M500 23H800" stroke="currentColor" stroke-width="2" fill="none"/>
-      <path d="M300 10v26M312 16v14" stroke="#FFFFFF" stroke-width="2.5" fill="none"/>
-      <path d="M312 23h18" stroke="currentColor" stroke-width="2" fill="none"/>
-      <path d="M470 23l5-8 5 16 5-16 5 16 5-8" stroke="#FFFFFF" stroke-width="2" fill="none" stroke-linejoin="round"/>
-    </svg>
+    <div>
+      <span class="tag"><svg class="i" width="16" height="16" viewBox="0 0 28 28" data-icon="flask"></svg>خطة علاجية وإثرائية · فيزياء</span>
+      <h1>المحاكاة في الفيزياء باستخدام CK-12</h1>
+      <p>تعلّم الكهرباء والمغناطيسية والفيزياء النووية بالتجربة: لكل درس محاكاة تفاعلية مجانية تجرّب فيها بنفسك، وفيديو قصير يشرح طريقة استخدامها.</p>
+    </div>
+    <div class="orbit" aria-hidden="true">
+      <div class="core"><svg class="i" width="56" height="56" viewBox="0 0 28 28" data-icon="atom"></svg></div>
+      <div class="sat s1"><svg class="i" width="24" height="24" viewBox="0 0 28 28" data-icon="bolt"></svg></div>
+      <div class="sat s2"><svg class="i" width="24" height="24" viewBox="0 0 28 28" data-icon="magnet"></svg></div>
+      <div class="sat s3"><svg class="i" width="24" height="24" viewBox="0 0 28 28" data-icon="wave"></svg></div>
+      <div class="sat s4"><svg class="i" width="24" height="24" viewBox="0 0 28 28" data-icon="nucleus"></svg></div>
+    </div>
   </div>
 </header>
 
 <div class="wrap">
-  <ol class="how">
-    <li><span><b>شاهد الفيديو التعريفي</b>تعرّف على واجهة المحاكاة وأدواتها.</span></li>
-    <li><span><b>افتح المحاكاة</b>غيّر القيم ولاحظ النتائج بنفسك.</span></li>
-    <li><span><b>شاهد شرح المحاكاة</b>ثم ضع علامة ✓ على الدرس عند إنجازه.</span></li>
+  <ol class="steps">
+    <li><div class="badge" style="background:linear-gradient(135deg,#208CAA,#1673A4)"><svg class="i" width="24" height="24" viewBox="0 0 28 28" data-icon="screen"></svg></div><span class="n">الخطوة 1</span><b>شاهد الفيديو التعريفي</b><span class="d">تعرّف على واجهة المحاكاة وأدواتها.</span></li>
+    <li><div class="badge" style="background:linear-gradient(135deg,#2BADDF,#208CAA)"><svg class="i" width="24" height="24" viewBox="0 0 28 28" data-icon="flask"></svg></div><span class="n">الخطوة 2</span><b>افتح المحاكاة</b><span class="d">غيّر القيم ولاحظ النتائج بنفسك.</span></li>
+    <li><div class="badge" style="background:linear-gradient(135deg,#7358A5,#382972)"><svg class="i" width="24" height="24" viewBox="0 0 28 28" data-icon="check"></svg></div><span class="n">الخطوة 3</span><b>شاهد الشرح وسجّل إنجازك</b><span class="d">ضع علامة ✓ على الدرس عند إنهائه.</span></li>
   </ol>
   <div class="intro">
-    <div>
+    <div class="badge" style="background:linear-gradient(135deg,#382972,#7030A0)"><svg class="i" width="24" height="24" viewBox="0 0 28 28" data-icon="play"></svg></div>
+    <div class="txt">
       <h2>فيديو تعريفي بمحاكاة CK-12</h2>
       <p>ابدأ من هنا قبل أول درس.</p>
     </div>
-    <a class="btn vid" href="https://www.youtube.com/watch?v=cmdBI54ew3M" target="_blank" rel="noopener">
-      <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3.5v9l7-4.5z" fill="currentColor"/></svg>شاهد الفيديو</a>
+    <a class="btn solid-indigo" href="https://www.youtube.com/watch?v=cmdBI54ew3M" target="_blank" rel="noopener"><svg class="i" width="16" height="16" viewBox="0 0 28 28" data-icon="play"></svg>شاهد الفيديو</a>
   </div>
 </div>
 
@@ -149,9 +163,7 @@ footer strong{color:var(--ink);font-weight:600}
 <div class="wrap">
   <section class="ch" id="maps">
     <div class="ch-head">
-      <div class="ch-icon" style="background:var(--teal-soft);color:var(--teal)">
-        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="10" y="3" width="8" height="6" rx="1.5"/><rect x="3" y="19" width="8" height="6" rx="1.5"/><rect x="17" y="19" width="8" height="6" rx="1.5"/><path d="M14 9v5M7 19v-5h14v5"/></svg>
-      </div>
+      <div class="ch-badge" style="background:linear-gradient(135deg,#0DCFDA,#208CAA)"><svg class="i" width="28" height="28" viewBox="0 0 28 28" data-icon="map"></svg></div>
       <div>
         <div class="ch-num">إثراء</div>
         <h2>خرائط المفاهيم والربط مع التخصصات الأخرى</h2>
@@ -161,14 +173,14 @@ footer strong{color:var(--ink);font-weight:600}
       <div class="map">
         <h3>الكهرباء والمغناطيسية</h3>
         <p>افتح موقع خرائط المفاهيم، واكتب في مربع البحث:</p>
-        <div class="term"><code>current</code><button class="copy" type="button" data-copy="current">نسخ</button></div>
-        <div><a class="btn sim" href="https://www.ck12.org/conceptmap/" target="_blank" rel="noopener">افتح خريطة المفاهيم</a></div>
+        <div class="term"><code>current</code><button class="copy" type="button" data-copy="current"><svg class="i" width="14" height="14" viewBox="0 0 28 28" data-icon="copy"></svg><span>نسخ</span></button></div>
+        <a class="btn sim" href="https://www.ck12.org/conceptmap/" target="_blank" rel="noopener"><svg class="i" width="16" height="16" viewBox="0 0 28 28" data-icon="map"></svg>افتح خريطة المفاهيم</a>
       </div>
       <div class="map">
         <h3>الفيزياء النووية</h3>
         <p>افتح موقع خرائط المفاهيم، واكتب في مربع البحث:</p>
-        <div class="term"><code>Nuclear Fusion</code><button class="copy" type="button" data-copy="Nuclear Fusion">نسخ</button></div>
-        <div><a class="btn sim" href="https://www.ck12.org/conceptmap/" target="_blank" rel="noopener">افتح خريطة المفاهيم</a></div>
+        <div class="term"><code>Nuclear Fusion</code><button class="copy" type="button" data-copy="Nuclear Fusion"><svg class="i" width="14" height="14" viewBox="0 0 28 28" data-icon="copy"></svg><span>نسخ</span></button></div>
+        <a class="btn sim" href="https://www.ck12.org/conceptmap/" target="_blank" rel="noopener"><svg class="i" width="16" height="16" viewBox="0 0 28 28" data-icon="map"></svg>افتح خريطة المفاهيم</a>
       </div>
     </div>
   </section>
@@ -176,68 +188,83 @@ footer strong{color:var(--ink);font-weight:600}
 
 <footer>
   <div class="wrap">
-    <p><strong>إعداد: أ. أريج الجبرتي</strong></p>
+    <strong>إعداد: أ. أريج الجبرتي</strong>
     <p>المحاكاة ومقاطع الشرح مصادر تعليمية مجانية من موقع CK-12، وتفتح على الموقع نفسه.</p>
   </div>
 </footer>
 
 <script>
+const ICONS = {
+  battery:'<path d="M3 14h7M18 14h7M10 8v12M14 11v6M18 8v12"/>',
+  bulb:'<path d="M10 18a7 7 0 1 1 8 0v3h-8z"/><path d="M11 24h6M12 12l2 3 2-3"/>',
+  magnet:'<path d="M7 4v10a7 7 0 0 0 14 0V4h-5v10a2 2 0 0 1-4 0V4z"/><path d="M7 8h5M16 8h5"/>',
+  coil:'<path d="M2 14h3c0-5 4-5 4 0s4 5 4 0 4-5 4 0 4 5 4 0h5"/>',
+  wave:'<path d="M2 14c3-8 6-8 8 0s5 8 8 0 5-8 8 0"/>',
+  nucleus:'<circle cx="11" cy="11" r="4"/><circle cx="17" cy="11" r="4"/><circle cx="14" cy="17" r="4"/>',
+  atom:'<circle cx="14" cy="14" r="1.8" fill="currentColor"/><ellipse cx="14" cy="14" rx="11" ry="4.5"/><ellipse cx="14" cy="14" rx="11" ry="4.5" transform="rotate(60 14 14)"/><ellipse cx="14" cy="14" rx="11" ry="4.5" transform="rotate(-60 14 14)"/>',
+  bolt:'<path d="M16 3L6 16h7l-1 9 10-13h-7z"/>',
+  flask:'<path d="M11 3h6M12 3v7L5 22a2 2 0 0 0 2 3h14a2 2 0 0 0 2-3l-7-12V3"/><path d="M8 18h12"/>',
+  play:'<path d="M9 6v16l13-8z"/>',
+  check:'<circle cx="14" cy="14" r="11"/><path d="M9 14l3.5 3.5L19 11"/>',
+  screen:'<rect x="3" y="5" width="22" height="15" rx="2"/><path d="M12 10v5l4-2.5zM10 24h8"/>',
+  map:'<rect x="10" y="3" width="8" height="6" rx="1.5"/><rect x="3" y="19" width="8" height="6" rx="1.5"/><rect x="17" y="19" width="8" height="6" rx="1.5"/><path d="M14 9v5M7 19v-5h14v5"/>',
+  copy:'<rect x="9" y="9" width="15" height="15" rx="2"/><path d="M5 19V6a2 2 0 0 1 2-2h12"/>',
+  tower:'<path d="M14 3l-6 22M14 3l6 22M9 10h10M7.5 15h13M6 20h16M10 25l8-10M18 25l-8-10"/>',
+  circuit:'<rect x="4" y="8" width="20" height="14" rx="2"/><circle cx="14" cy="8" r="3"/><path d="M11 22v-3M17 22v-5"/>',
+  gauge:'<circle cx="14" cy="15" r="10"/><path d="M14 15l5-6M8 15h2M18 15h2M14 8v2"/><circle cx="14" cy="15" r="1.2" fill="currentColor"/>',
+  motor:'<circle cx="14" cy="14" r="5"/><path d="M14 3a11 11 0 0 1 10.5 8M14 25A11 11 0 0 1 3.5 17"/><path d="M21 9l3.5 2 1-3.7M7 19l-3.5-2-1 3.7"/>',
+  transformer:'<rect x="9" y="4" width="10" height="20" rx="1.5"/><path d="M3 8h6M3 12h6M3 16h6M3 20h6M19 10h6M19 14h6M19 18h6"/>',
+  decay:'<circle cx="10" cy="14" r="5"/><path d="M16 10l7-4M16 18l7 4M17 14h8"/><circle cx="24" cy="6" r="1.2" fill="currentColor"/><circle cx="24" cy="22" r="1.2" fill="currentColor"/>'
+};
 const SIM = p => `https://interactives.ck12.org/simulations/${p}/app/index.html?lang=en`;
 const YT = id => `https://www.youtube.com/watch?v=${id}`;
-const ICONS = {
-  battery:'<path d="M3 14h7M18 14h7M10 8v12M14 11v6M18 8v12" />',
-  bulb:'<circle cx="14" cy="12" r="6"/><path d="M11 21h6M12 24h4M11 10l3 4 3-4"/>',
-  magnet:'<path d="M7 5v9a7 7 0 0 0 14 0V5"/><path d="M7 9h4M17 9h4M11 5v9a3 3 0 0 0 6 0V5"/>',
-  coil:'<path d="M2 14h4c0-5 4-5 4 0s4 5 4 0 4-5 4 0 4 5 4 0h4"/>',
-  wave:'<path d="M2 14c3-8 6-8 8 0s5 8 8 0 5-8 8 0"/>',
-  nucleus:'<circle cx="11" cy="12" r="4"/><circle cx="17" cy="12" r="4"/><circle cx="14" cy="17" r="4"/>',
-  atom:'<circle cx="14" cy="14" r="2" fill="currentColor"/><ellipse cx="14" cy="14" rx="11" ry="4.5"/><ellipse cx="14" cy="14" rx="11" ry="4.5" transform="rotate(60 14 14)"/><ellipse cx="14" cy="14" rx="11" ry="4.5" transform="rotate(-60 14 14)"/>'
-};
 const DATA = [
-  {id:'current', ar:'الكهرباء التيارية', en:'Current Electricity', icon:'battery', lessons:[
-    {ar:'التيار الكهربائي والدوائر الكهربائية', en:'Current and Circuits', sim:SIM('physics/dollhouse'), vid:YT('MIIbdr89YjQ')},
-    {ar:'الطاقة الكهربائية', en:'Electric Energy', sim:SIM('physics/power-lines'), vid:YT('-npq-heD_7A')}]},
-  {id:'circuits', ar:'دوائر التوالي والتوازي', en:'Series and Parallel Circuits', icon:'bulb', lessons:[
-    {ar:'الدوائر الكهربائية البسيطة', en:'Simple Circuits', sim:SIM('physics/marquee-lights')+'&screen=sandbox', vid:YT('rg2cJMOIJjY')}]},
-  {id:'magnetic', ar:'المجالات المغناطيسية', en:'Magnetic Fields', icon:'magnet', lessons:[
-    {ar:'المغانط: الدائمة والمؤقتة', en:'Magnets: Permanent and Temporary', sim:SIM('physics/field-lines'), vid:YT('Qz7KW-llQ-0')},
-    {ar:'القوى الناتجة عن المجالات المغناطيسية', en:'Forces Caused by Magnetic Fields', sim:SIM('physics/galvanometer'), vid:YT('pCRHH_jba5k')}]},
-  {id:'induction', ar:'الحث الكهرومغناطيسي', en:'Electromagnetic Induction', icon:'coil', lessons:[
-    {ar:'التيار الكهربائي الناتج عن تغير المجالات المغناطيسية', en:'Electric Current from Changing Magnetic Fields', sim:SIM('physics/electric-motor'), vid:YT('Jzao7mntmzA')},
-    {ar:'تغير المجالات المغناطيسية يولد قوة دافعة كهربائية حثية', en:'Changing Magnetic Fields Induce EMF', sim:SIM('physics/ac-transformer')}]},
-  {id:'em', ar:'الكهرومغناطيسية', en:'Electromagnetism', icon:'wave', lessons:[
-    {ar:'تفاعلات المجالات الكهربائية والمغناطيسية والمادة، والمجالات في الفضاء', en:'Interaction of Electric and Magnetic Fields and Matter · Fields in Space', sim:SIM('physics/light-wave'), vid:YT('v8NVo6Q-4Hg')}]},
-  {id:'nuclear', ar:'الفيزياء النووية', en:'Nuclear Physics', icon:'nucleus', lessons:[
-    {ar:'النواة', en:'The Nucleus', sim:SIM('physics/marie-curies-classroom'), vid:YT('oR3I2GzGWbE')},
-    {ar:'الاضمحلال النووي والتفاعلات النووية', en:'Nuclear Decay and Reactions', sim:SIM('physics/radiocarbon-dating')+'&screen=sandbox', vid:YT('JTbwPf9_TQQ')}]},
-  {id:'atom', ar:'الذرة', en:'The Atom', icon:'atom', lessons:[
-    {ar:'نموذج بور الذري', en:'The Bohr Model of the Atom', sim:SIM('chemistry/bohr-model-of-electron')+'&screen=sandbox', vid:YT('_WnvdriMeNk')}]}
+  {id:'current', ar:'الكهرباء التيارية', en:'Current Electricity', icon:'battery', c:'#208CAA', lessons:[
+    {ar:'التيار الكهربائي والدوائر الكهربائية', en:'Current and Circuits', icon:'bulb', sim:SIM('physics/dollhouse'), vid:YT('MIIbdr89YjQ')},
+    {ar:'الطاقة الكهربائية', en:'Electric Energy', icon:'tower', sim:SIM('physics/power-lines'), vid:YT('-npq-heD_7A')}]},
+  {id:'circuits', ar:'دوائر التوالي والتوازي', en:'Series and Parallel Circuits', icon:'bulb', c:'#2BADDF', lessons:[
+    {ar:'الدوائر الكهربائية البسيطة', en:'Simple Circuits', icon:'circuit', sim:SIM('physics/marquee-lights')+'&screen=sandbox', vid:YT('rg2cJMOIJjY')}]},
+  {id:'magnetic', ar:'المجالات المغناطيسية', en:'Magnetic Fields', icon:'magnet', c:'#7358A5', lessons:[
+    {ar:'المغانط: الدائمة والمؤقتة', en:'Magnets: Permanent and Temporary', icon:'magnet', sim:SIM('physics/field-lines'), vid:YT('Qz7KW-llQ-0')},
+    {ar:'القوى الناتجة عن المجالات المغناطيسية', en:'Forces Caused by Magnetic Fields', icon:'gauge', sim:SIM('physics/galvanometer'), vid:YT('pCRHH_jba5k')}]},
+  {id:'induction', ar:'الحث الكهرومغناطيسي', en:'Electromagnetic Induction', icon:'coil', c:'#1673A4', lessons:[
+    {ar:'التيار الكهربائي الناتج عن تغير المجالات المغناطيسية', en:'Electric Current from Changing Magnetic Fields', icon:'motor', sim:SIM('physics/electric-motor'), vid:YT('Jzao7mntmzA')},
+    {ar:'تغير المجالات المغناطيسية يولد قوة دافعة كهربائية حثية', en:'Changing Magnetic Fields Induce EMF', icon:'transformer', sim:SIM('physics/ac-transformer')}]},
+  {id:'em', ar:'الكهرومغناطيسية', en:'Electromagnetism', icon:'wave', c:'#13A09F', lessons:[
+    {ar:'تفاعلات المجالات الكهربائية والمغناطيسية والمادة، والمجالات في الفضاء', en:'Interaction of Electric and Magnetic Fields and Matter · Fields in Space', icon:'wave', sim:SIM('physics/light-wave'), vid:YT('v8NVo6Q-4Hg')}]},
+  {id:'nuclear', ar:'الفيزياء النووية', en:'Nuclear Physics', icon:'nucleus', c:'#382972', lessons:[
+    {ar:'النواة', en:'The Nucleus', icon:'nucleus', sim:SIM('physics/marie-curies-classroom'), vid:YT('oR3I2GzGWbE')},
+    {ar:'الاضمحلال النووي والتفاعلات النووية', en:'Nuclear Decay and Reactions', icon:'decay', sim:SIM('physics/radiocarbon-dating')+'&screen=sandbox', vid:YT('JTbwPf9_TQQ')}]},
+  {id:'atom', ar:'الذرة', en:'The Atom', icon:'atom', c:'#7030A0', lessons:[
+    {ar:'نموذج بور الذري', en:'The Bohr Model of the Atom', icon:'atom', sim:SIM('chemistry/bohr-model-of-electron')+'&screen=sandbox', vid:YT('_WnvdriMeNk')}]}
 ];
+const ic=(n,s=24)=>`<svg class="i" width="${s}" height="${s}" viewBox="0 0 28 28" aria-hidden="true">${ICONS[n]}</svg>`;
+document.querySelectorAll('svg[data-icon]').forEach(s=>{s.innerHTML=ICONS[s.dataset.icon];s.setAttribute('aria-hidden','true')});
 
 const KEY='ck12-physics-done';
 let done={}; try{done=JSON.parse(localStorage.getItem(KEY))||{}}catch(e){}
 const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(done))}catch(e){}};
 const esc=s=>s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-const play='<svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3.5v9l7-4.5z" fill="currentColor"/></svg>';
-const flask='<svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M6 2h4M7 2v4L3 13a1 1 0 0 0 1 1.5h8A1 1 0 0 0 13 13L9 6V2"/></svg>';
+const shade=h=>{const n=parseInt(h.slice(1),16),f=v=>Math.max(0,Math.round(v*.72));return '#'+[(n>>16)&255,(n>>8)&255,n&255].map(f).map(v=>v.toString(16).padStart(2,'0')).join('')};
 
 let total=0, html='', nav='';
 DATA.forEach((c,ci)=>{
-  nav+=`<a href="#${c.id}">${esc(c.ar)}</a>`;
-  html+=`<section class="ch" id="${c.id}"><div class="ch-head"><div class="ch-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONS[c.icon]}</svg></div><div><div class="ch-num">الفصل ${ci+1}</div><h2>${esc(c.ar)}</h2><span class="en">${esc(c.en)}</span></div></div><div class="lessons">`;
+  nav+=`<a href="#${c.id}"><i style="background:${c.c}"></i>${esc(c.ar)}</a>`;
+  html+=`<section class="ch" id="${c.id}" style="--c:${c.c}"><div class="ch-head"><div class="ch-badge" style="background:linear-gradient(135deg,${c.c},${shade(c.c)})">${ic(c.icon,28)}</div><div><div class="ch-num">الفصل ${ci+1}</div><h2>${esc(c.ar)}</h2><span class="en">${esc(c.en)}</span></div></div><div class="lessons">`;
   c.lessons.forEach((l,li)=>{
     const k=c.id+'-'+li; total++;
     html+=`<div class="lesson${done[k]?' done':''}" data-k="${k}">
       <input type="checkbox" class="check" id="chk-${k}" ${done[k]?'checked':''} aria-label="أنجزت درس ${esc(l.ar)}">
+      <div class="l-ico">${ic(l.icon,24)}</div>
       <label for="chk-${k}" style="min-width:0;cursor:pointer"><h3>${esc(l.ar)}</h3><span class="en">${esc(l.en)}</span></label>
-      <div class="actions"><a class="btn sim" href="${l.sim}" target="_blank" rel="noopener">${flask}افتح المحاكاة</a>${l.vid?`<a class="btn vid" href="${l.vid}" target="_blank" rel="noopener">${play}شرح المحاكاة</a>`:''}</div></div>`;
+      <div class="actions"><a class="btn sim" href="${l.sim}" target="_blank" rel="noopener">${ic('flask',16)}افتح المحاكاة</a>${l.vid?`<a class="btn vid" href="${l.vid}" target="_blank" rel="noopener">${ic('play',16)}شرح المحاكاة</a>`:''}</div></div>`;
   });
   html+='</div></section>';
 });
-nav+=`<a href="#maps">خرائط المفاهيم</a><span class="progress" id="prog"></span>`;
+nav+=`<a href="#maps"><i style="background:#0DCFDA"></i>خرائط المفاهيم</a><span class="progress" id="prog"></span>`;
 document.getElementById('chapters').innerHTML=html;
 document.getElementById('nav').innerHTML=nav;
-const prog=()=>{document.getElementById('prog').textContent=`${Object.values(done).filter(Boolean).length} / ${total} ✓`};
+const prog=()=>{document.getElementById('prog').textContent=`أنجزت ${Object.values(done).filter(Boolean).length} من ${total}`};
 prog();
 document.getElementById('chapters').addEventListener('change',e=>{
   if(!e.target.classList.contains('check'))return;
@@ -245,9 +272,10 @@ document.getElementById('chapters').addEventListener('change',e=>{
   row.classList.toggle('done',e.target.checked); save(); prog();
 });
 document.querySelectorAll('.copy').forEach(b=>b.addEventListener('click',()=>{
-  const t=b.dataset.copy;
-  const ok=()=>{b.textContent='نُسخ';setTimeout(()=>b.textContent='نسخ',1500)};
-  if(navigator.clipboard){navigator.clipboard.writeText(t).then(ok).catch(()=>{const r=document.createRange();r.selectNodeContents(b.previousElementSibling);getSelection().removeAllRanges();getSelection().addRange(r)})}
+  const t=b.dataset.copy, lbl=b.querySelector('span');
+  const ok=()=>{lbl.textContent='نُسخ';setTimeout(()=>lbl.textContent='نسخ',1500)};
+  const sel=()=>{const r=document.createRange();r.selectNodeContents(b.previousElementSibling);getSelection().removeAllRanges();getSelection().addRange(r)};
+  if(navigator.clipboard){navigator.clipboard.writeText(t).then(ok).catch(sel)}else sel();
 }));
 </script>
 </body></html>
