@@ -9,38 +9,43 @@
 <title>حقيبة محاكاة الفيزياء</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300;400;500;600&family=Reem+Kufi:wght@500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
 /* Layout: a lab notebook — narrow reading column, chapters as numbered sections, each lesson a row with two actions (simulate / watch). */
+/* Layout: a gradient identity band (blue to green), then chapters as numbered sections, each lesson a row with two actions (simulate / watch). */
 :root{
-  --bg:#F3F6F8; --surface:#FFFFFF; --ink:#13293D; --muted:#5A6B7B; --line:#D5DEE5;
-  --copper:#B35C1E; --copper-soft:#F6E7DB; --teal:#0F6E73; --teal-soft:#DDEFEF;
-  --display:"Reem Kufi","Readex Pro",Tahoma,sans-serif;
-  --body:"Readex Pro",Tahoma,"Segoe UI",sans-serif;
+  --bg:#F2F7F8; --surface:#FFFFFF; --ink:#17445B; --muted:#5B7480; --line:#D3E3E6;
+  --blue:#2982AF; --green:#3CA77A; --copper:#3CA77A; --copper-soft:#E3F3EC; --teal:#157885; --teal-soft:#DDEFF1;
+  --band-a:#2982AF; --band-b:#3CA77A; --on-band:#FFFFFF;
+  --display:"Tajawal",Tahoma,"Segoe UI",sans-serif;
+  --body:"Tajawal",Tahoma,"Segoe UI",sans-serif;
   --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --bg:#0E1A24; --surface:#152534; --ink:#E6EDF3; --muted:#9AAAB8; --line:#26394A;
-  --copper:#E58B4B; --copper-soft:#3A2618; --teal:#4FC1C6; --teal-soft:#123638; color-scheme:dark}}
+  --bg:#0D1E26; --surface:#132B36; --ink:#E4F0F2; --muted:#9DB6BE; --line:#22414D;
+  --copper:#5CC596; --copper-soft:#173A2E; --teal:#4FB3C0; --teal-soft:#133841;
+  --band-a:#1D5F82; --band-b:#277A5A; --on-band:#FFFFFF; color-scheme:dark}}
 :root[data-theme="dark"]{
-  --bg:#0E1A24; --surface:#152534; --ink:#E6EDF3; --muted:#9AAAB8; --line:#26394A;
-  --copper:#E58B4B; --copper-soft:#3A2618; --teal:#4FC1C6; --teal-soft:#123638; color-scheme:dark}
+  --bg:#0D1E26; --surface:#132B36; --ink:#E4F0F2; --muted:#9DB6BE; --line:#22414D;
+  --copper:#5CC596; --copper-soft:#173A2E; --teal:#4FB3C0; --teal-soft:#133841;
+  --band-a:#1D5F82; --band-b:#277A5A; --on-band:#FFFFFF; color-scheme:dark}
 
 *{box-sizing:border-box}
-body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.75;direction:rtl}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.8;direction:rtl}
 .wrap{max-width:860px;margin:0 auto;padding-inline:16px}
 a{color:inherit}
 :focus-visible{outline:2px solid var(--copper);outline-offset:3px;border-radius:6px}
 
 /* hero */
-header.hero{padding-block:48px 28px}
+header.hero{padding-block:44px 30px;background:linear-gradient(90deg,var(--band-a),var(--band-b));color:var(--on-band);margin-bottom:28px}
+header.hero .lead{color:var(--on-band);opacity:.92}
+header.hero .eyebrow{color:var(--on-band);opacity:.85}
+header.hero h1 span{color:var(--on-band);opacity:.8}
 .eyebrow{font-size:.8rem;letter-spacing:.04em;color:var(--teal);font-weight:500}
-h1{font-family:var(--display);font-weight:700;font-size:clamp(1.9rem,5vw,2.8rem);line-height:1.35;margin:.4rem 0 .6rem;text-wrap:balance}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(1.9rem,5vw,2.8rem);line-height:1.35;margin:.4rem 0 .6rem;text-wrap:balance}
 h1 span{color:var(--copper)}
 .lead{color:var(--muted);max-width:60ch;margin:0}
-.author{display:flex;align-items:center;gap:12px;margin-top:22px;font-weight:500}
-.author svg{flex:none}
-.circuit{display:block;width:100%;height:46px;margin-top:26px;color:var(--line)}
+.circuit{display:block;width:100%;height:40px;margin-top:22px;color:rgba(255,255,255,.45)}
 
 /* how-to */
 .how{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-block:8px 28px;padding:0;list-style:none;counter-reset:s}
@@ -64,20 +69,21 @@ section.ch{padding-block:34px 6px;scroll-margin-top:60px}
 .ch-head{display:flex;align-items:center;gap:14px;margin-bottom:14px}
 .ch-icon{flex:none;width:52px;height:52px;border-radius:12px;background:var(--copper-soft);color:var(--copper);display:grid;place-items:center}
 .ch-num{font-family:var(--mono);font-size:.75rem;color:var(--muted)}
-.ch-head h2{font-family:var(--display);font-weight:500;font-size:1.45rem;margin:0;line-height:1.3}
+.ch-head h2{font-family:var(--display);font-weight:700;font-size:1.45rem;margin:0;line-height:1.3}
 .en{font-family:var(--mono);font-size:.78rem;color:var(--muted);direction:ltr;unicode-bidi:isolate;text-align:right}
 
 .lessons{display:grid;gap:10px}
 .lesson{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:14px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
 .lesson.done{border-color:var(--teal)}
-.lesson h3{margin:0;font-size:1.02rem;font-weight:500;line-height:1.5}
+.lesson h3{margin:0;font-size:1.05rem;font-weight:700;line-height:1.5}
 .lesson .en{display:block}
 .check{width:22px;height:22px;accent-color:var(--teal);cursor:pointer;margin:0}
 .actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
-.btn{display:inline-flex;align-items:center;gap:7px;text-decoration:none;font-size:.88rem;font-weight:500;padding:8px 14px;border-radius:10px;border:1.5px solid transparent;white-space:nowrap;transition:transform .15s}
+.btn{display:inline-flex;align-items:center;gap:7px;text-decoration:none;font-size:.92rem;font-weight:700;padding:8px 14px;border-radius:10px;border:1.5px solid transparent;white-space:nowrap;transition:transform .15s}
 .btn:hover{transform:translateY(-1px)}
 .btn.sim{background:var(--teal);color:var(--surface)}
 .btn.vid{border-color:var(--copper);color:var(--copper);background:transparent}
+.intro .btn.vid{background:var(--copper);color:var(--surface)}
 .btn svg{flex:none}
 .note{font-size:.8rem;color:var(--muted);margin-top:4px}
 
@@ -109,15 +115,11 @@ footer strong{color:var(--ink);font-weight:600}
     <div class="eyebrow">خطة علاجية وإثرائية · فيزياء</div>
     <h1>المحاكاة في الفيزياء <span>باستخدام CK-12</span></h1>
     <p class="lead">تعلّم الكهرباء والمغناطيسية والفيزياء النووية بالتجربة: لكل درس محاكاة تفاعلية مجانية تجرّب فيها بنفسك، وفيديو قصير يشرح طريقة استخدامها.</p>
-    <div class="author">
-      <svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="13" fill="none" stroke="currentColor" stroke-width="1.5" style="color:var(--copper)"/><path d="M8 14h3l2-5 3 10 2-5h2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="color:var(--copper)"/></svg>
-      <span>إعداد: أ. أريج الجبرتي</span>
-    </div>
     <svg class="circuit" viewBox="0 0 800 46" preserveAspectRatio="none" aria-hidden="true">
       <path d="M0 23H300M330 23H470M500 23H800" stroke="currentColor" stroke-width="2" fill="none"/>
-      <path d="M300 10v26M312 16v14" stroke="var(--copper)" stroke-width="2.5" fill="none"/>
+      <path d="M300 10v26M312 16v14" stroke="#FFFFFF" stroke-width="2.5" fill="none"/>
       <path d="M312 23h18" stroke="currentColor" stroke-width="2" fill="none"/>
-      <path d="M470 23l5-8 5 16 5-16 5 16 5-8" stroke="var(--teal)" stroke-width="2" fill="none" stroke-linejoin="round"/>
+      <path d="M470 23l5-8 5 16 5-16 5 16 5-8" stroke="#FFFFFF" stroke-width="2" fill="none" stroke-linejoin="round"/>
     </svg>
   </div>
 </header>
